@@ -1,7 +1,8 @@
 const formId = document.getElementById("form-id") as HTMLFormElement;
 const formName = document.getElementById("name") as HTMLInputElement;
 const formEmail = document.getElementById("email") as HTMLInputElement;
-
+const navLinks = document.querySelectorAll('a[href^="#"]') as NodeListOf<HTMLAnchorElement>;
+const scrollToTop = document.getElementById('arrow-id') as HTMLAnchorElement
 
 //form validation logic
 const formValidation = () => {
@@ -22,7 +23,6 @@ if (formId) {
 
 
 //smooth scrolling logic
-const navLinks = document.querySelectorAll('a[href^="#"]') as NodeListOf<HTMLAnchorElement>;
 
 navLinks.forEach(link => {
     link.addEventListener('click', (event) => {
@@ -47,3 +47,26 @@ navLinks.forEach(link => {
         }
     });
 });
+
+
+//Scroll-to-top logic
+
+window.addEventListener('scroll', () => {
+    //preventing "scrollToTop's value not being null"
+    if (scrollToTop) {
+        // Show/hide the button based on scroll position
+        if (window.scrollY > 500) {
+            scrollToTop.classList.remove("hidden");
+            scrollToTop.classList.add("fixed", "bottom-4", "right-4");
+        } else {
+            scrollToTop.classList.add("hidden");
+            scrollToTop.classList.remove("fixed", "bottom-4", "right-4");
+        }
+    }
+});
+
+if (scrollToTop) {
+    scrollToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}

@@ -14,7 +14,7 @@
 
     <!--HERO SECTION-->
     <section 
-      class="bg-[url('/img/cozy-bar.jpg')] bg-cover bg-center h-screen w-full"
+      class="bg-[url('img/cozy-bar.jpg')] bg-cover bg-center h-screen w-full"
       id="hero-section"
       >
       <div class="absolute top-0 left-0 w-full h-screen bg-gradient-to-br from-black to-transparent z-20"></div>
@@ -35,7 +35,7 @@
       </div>
     </section>
 
-    <main class="flex justify-center text-start w-full h-fit p-8 my-30">
+    <main class="flex justify-center text-start w-full h-fit relative p-8 my-30">
 
       <!--Texts and imgs section-->
       <section 
@@ -166,6 +166,14 @@
           </button>
         </form>
       </section>
+
+
+      <!--Icon that scrolls to the top-->
+      <button class="bottom-20 right-10 md:hidden">
+        <a href="#hero-section" id="arrow-id">
+          <i class="fa-solid fa-arrow-up bg-[#556B2F] text-white hover:bg-[#004C00] border-2 border-[#004C00] rounded-lg p-3">Go Up</i>
+        </a>
+      </button>
     </main>
 
 
