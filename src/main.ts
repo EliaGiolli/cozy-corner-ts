@@ -1,29 +1,31 @@
+import { FormValidator } from './formValidation'; // Adjust the path as necessary
+
 const formId = document.getElementById("form-id") as HTMLFormElement;
 const formName = document.getElementById("name") as HTMLInputElement;
 const formEmail = document.getElementById("email") as HTMLInputElement;
 const navLinks = document.querySelectorAll('a[href^="#"]') as NodeListOf<HTMLAnchorElement>;
 const scrollToTop = document.getElementById('arrow-id') as HTMLAnchorElement
 
-//form validation logic
-const formValidation = () => {
-    console.log("Form submitted with name: ", formName.value, "and email:", formEmail.value);
-    
-    formName.value = "";
-    formEmail.value= "";
-};
+// Form submission logic
+if (formId && formName && formName) {
+    const formValidator = new FormValidator(formName, formEmail);
 
-const handleSubmit = (event: Event) => {
-    event.preventDefault();
-    formValidation();
-};
+    // Funzione per gestire la submission del form
+    const handleSubmit = (event: Event) => {
+        event.preventDefault(); // Previeni il comportamento di default del form
+        
+        if (formValidator.validate()) {
+            console.log("Form submitted successfully!");
+            // Puoi aggiungere altra logica qui, come inviare i dati a un server
+        }
+    };
 
-if (formId) {
     formId.addEventListener("submit", handleSubmit);
+    } else {
+        console.error("Form or inputs not found in the DOM.");
 }
 
-
-//smooth scrolling logic
-
+// Smooth scrolling logic
 navLinks.forEach(link => {
     link.addEventListener('click', (event) => {
         event.preventDefault();
@@ -48,11 +50,8 @@ navLinks.forEach(link => {
     });
 });
 
-
-//Scroll-to-top logic
-
 window.addEventListener('scroll', () => {
-    //preventing "scrollToTop's value not being null"
+        //preventing "scrollToTop's value not being null"
     if (scrollToTop) {
         // Show/hide the button based on scroll position
         if (window.scrollY > 500) {
@@ -67,6 +66,6 @@ window.addEventListener('scroll', () => {
 
 if (scrollToTop) {
     scrollToTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
